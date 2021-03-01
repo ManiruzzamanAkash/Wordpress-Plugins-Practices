@@ -30,7 +30,7 @@ function wordcount_count_words($content)
 	$stripped_content = strip_tags($content);
 	$word_number = str_word_count($stripped_content);
 	$label = __('Total Number Of Words', 'word-count');
-	$label = apply_filters("wordcoutn_heading", $label);
+	$label = apply_filters("wordcount_heading", $label);
 	$tag = apply_filters("wordcount_tag", 'h2');
 	$content .= sprintf('<%s>%s: %s</%s>', $tag, $label, $word_number, $tag);
 	return $content;

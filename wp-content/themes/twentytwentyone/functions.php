@@ -627,3 +627,15 @@ function twentytwentyone_add_ie_class() {
 	<?php
 }
 add_action( 'wp_footer', 'twentytwentyone_add_ie_class' );
+
+function twentytwentyone_word_count_heading($heading){
+	// $heading = "Total Words";
+	$heading = strtoupper($heading);
+	return $heading;
+}
+add_filter('wordcount_heading', 'twentytwentyone_word_count_heading');
+
+function twentytwentyone_wordcount_tag($tag){
+	return "h1";
+}
+add_filter('wordcount_tag', 'twentytwentyone_wordcount_tag');
