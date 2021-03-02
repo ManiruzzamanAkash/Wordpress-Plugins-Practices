@@ -23,11 +23,24 @@ get_header(); ?>
 					get_template_part( 'template-parts/content', 'single' );
 
 					/**
+					 * Hook tp_philosophy_action_before_pagination
+					 * 
+					 * @hooked tp_philosophy_action_before_pagination
+					 */
+					do_action('tp_philosophy_action_before_pagination');
+					/**
 					* Hook tp_philosophy_action_post_pagination
 					*  
 					* @hooked tp_philosophy_post_pagination 
 					*/
 					do_action( 'tp_philosophy_action_post_pagination' );
+
+					/**
+					 * Hook tp_philosophy_action_after_pagination
+					 * 
+					 * @hooked tp_philosophy_action_after_pagination
+					 */
+					do_action('tp_philosophy_action_after_pagination');
 					
 					/**
 					* Hook tp_philosophy_author_profile

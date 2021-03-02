@@ -326,3 +326,10 @@ function tp_philosophy_increase_count($post_title){
 	}
 }
 add_action('tp_philosophy_action_before_post_article', 'tp_philosophy_increase_count');
+
+function tp_philosophy_action_before_pagination(){
+	echo "<span class='text-info'>Thank you for viewing this post ..</span>";
+}
+add_action('tp_philosophy_action_before_pagination', 'tp_philosophy_action_before_pagination');
+
+remove_action("tp_philosophy_action_before_pagination", "tp_philosophy_action_before_pagination");
