@@ -49,7 +49,11 @@ function pqrc_display_qrcode($content)
     /**
      * Dimension
      */
-    $dimension = apply_filters('pqrc_qrcode_dimension', '220x220');
+    $width = get_option('pqrc_width');
+    $height = get_option('pqrc_height');
+    $width = $width ? $width : 100;
+    $height = $height ? $height : 100;
+    $dimension = apply_filters('pqrc_qrcode_dimension', "{$width}x{$height}");
 
     /**
      * Extra Image attribute like class
@@ -61,3 +65,21 @@ function pqrc_display_qrcode($content)
     return $content;
 }
 add_filter('the_content', 'pqrc_display_qrcode');
+
+function pqrc_settings_init(){
+    add_settings_section('pqrc_section', __('Posts to qr Code', 'post-to-qr-code'), 'pqrc_section_callback', 'general');
+
+    add_settings_field('pqrc_width', __('qr Code Width', 'post-to-qr-code'), 'pqrc_display_field', 'general', 'pqrc_section', array('pqrc_width'));
+    add_settings_field('pqrc_height', __('qr Code Height', 'post-to-qr-code'), 'pqrc_display_field', 'general', 'pqrc_section', array('pqrc_height'));
+
+    register_setting('general', 'pqrc_height', array('sanitize_callback' => 'esc_attr'));
+    register_setting('general', 'pqrc_width', array('sanitize_callback' => 'esc_attr'));
+}
+function pqrc_section_callback(){
+    echo "<p>".__('Settings for Post to qr code plugin', 'post-to-qr-code')."</p>";
+}
+function pqrc_display_field($args){
+    $option = get_option($args[0]);
+    printf("<input type='text' id='%s' name='%s' value='%s' />", $args[0], $args[0], $option);
+}
+add_action('admin_init', 'pqrc_settings_init');
