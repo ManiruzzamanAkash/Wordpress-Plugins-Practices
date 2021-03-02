@@ -636,6 +636,18 @@ function twentytwentyone_word_count_heading($heading){
 add_filter('wordcount_heading', 'twentytwentyone_word_count_heading');
 
 function twentytwentyone_wordcount_tag($tag){
-	return "h1";
+	return "h5";
 }
 add_filter('wordcount_tag', 'twentytwentyone_wordcount_tag');
+
+
+function twentytwentyone_wordcount_reading_time_heading($heading){
+	return "Read Time: ";
+}
+add_filter('wordcount_reading_time_heading', 'twentytwentyone_wordcount_reading_time_heading');
+
+
+function twentytwentyone_wordcount_reading_time_tag($tag){
+	return "h6";
+}
+add_filter('wordcount_reading_time_tag', 'twentytwentyone_wordcount_reading_time_tag');
