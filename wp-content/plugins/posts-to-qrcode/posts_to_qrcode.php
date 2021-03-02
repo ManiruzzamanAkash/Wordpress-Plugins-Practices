@@ -72,10 +72,12 @@ function pqrc_settings_init(){
     add_settings_field('pqrc_width', __('qr Code Width', 'post-to-qr-code'), 'pqrc_display_field', 'general', 'pqrc_section', array('pqrc_width'));
     add_settings_field('pqrc_height', __('qr Code Height', 'post-to-qr-code'), 'pqrc_display_field', 'general', 'pqrc_section', array('pqrc_height'));
     add_settings_field('pqrc_select', __('Dropdown', 'post-to-qr-code'), 'pqrc_display_select_field', 'general', 'pqrc_section');
+    add_settings_field('pqrc_checkbox', __('Multiple Checkbox', 'post-to-qr-code'), 'pqrc_display_checkbox_field', 'general', 'pqrc_section');
 
     register_setting('general', 'pqrc_height', array('sanitize_callback' => 'esc_attr'));
     register_setting('general', 'pqrc_width', array('sanitize_callback' => 'esc_attr'));
     register_setting('general', 'pqrc_select', array('sanitize_callback' => 'esc_attr'));
+    register_setting('general', 'pqrc_checkbox');
 }
 function pqrc_section_callback(){
     echo "<p>".__('Settings for Post to qr code plugin', 'post-to-qr-code')."</p>";
@@ -84,6 +86,29 @@ function pqrc_display_field($args){
     $option = get_option($args[0]);
     printf("<input type='text' id='%s' name='%s' value='%s' />", $args[0], $args[0], $option);
 }
+
+function pqrc_display_checkbox_field(){
+    $option = get_option('pqrc_checkbox');
+    $countries = array(
+        'Afganistan',
+        'Bangladesh',
+        'India',
+        'Maldives',
+        'Nepal',
+        'Pakistan',
+        'Srilanka',
+        'Bhutan'
+    );
+    
+    foreach ($countries as $country) {
+        $selected = '';
+        if(is_array($option) && in_array($country, $option)) {
+            $selected = "checked";
+        }
+        printf('<input type="checkbox" name="%s" value="%s" %s /> %s<br />', 'pqrc_checkbox[]', $country, $selected, $country);
+    }
+}
+
 function pqrc_display_select_field(){
     $option = get_option('pqrc_select');
     $countries = array(
@@ -101,7 +126,9 @@ function pqrc_display_select_field(){
     printf('<select id="%s" name="%s" >', 'pqrc_select', 'pqrc_select');
     foreach ($countries as $country) {
         $selected = '';
-        if($option == $country) $selected = "selected";
+        if($option == $country) {
+            $selected = "selected";
+        }
         printf('<option value="%s" %s>%s</option>', $country, $selected, $country);
     }
     printf('</select>');
