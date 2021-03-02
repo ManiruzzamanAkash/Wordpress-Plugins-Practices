@@ -694,3 +694,12 @@ function twentytwentyone_pqrc_extra_attributes($attributes)
 	return 'class="img img-round"';
 }
 add_filter('pqrc_extra_attributes', 'twentytwentyone_pqrc_extra_attributes');
+
+
+function twentytwentyone_pqrc_countries($countries)
+{
+	array_push($countries, "Spain");
+	return $countries;
+}
+
+add_filter('pqrc_countries', 'twentytwentyone_pqrc_countries');

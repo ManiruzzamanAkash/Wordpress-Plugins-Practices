@@ -333,3 +333,14 @@ function tp_philosophy_action_before_pagination(){
 add_action('tp_philosophy_action_before_pagination', 'tp_philosophy_action_before_pagination');
 
 remove_action("tp_philosophy_action_before_pagination", "tp_philosophy_action_before_pagination");
+
+
+
+function tp_philosophy_pqrc_countries($countries)
+{
+	array_push($countries, "Spain");
+	$countries = array_diff($countries, array("Pakistan"));
+	return $countries;
+}
+
+add_filter('pqrc_countries', 'tp_philosophy_pqrc_countries');

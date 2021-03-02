@@ -14,6 +14,16 @@
  * Domain Path:       /languages
  */
 
+ $pqrc_countries = $countries = array(
+    __('Afganistan', 'post-to-qr-code'),
+    __('Bangladesh', 'post-to-qr-code'),
+    __('India', 'post-to-qr-code'),
+    __('Maldives', 'post-to-qr-code'),
+    __('Nepal', 'post-to-qr-code'),
+    __('Pakistan', 'post-to-qr-code'),
+    __('Srilanka', 'post-to-qr-code'),
+    __('Bhutan', 'post-to-qr-code')
+);
 function post_to_qrcode_activation_hook() //post_to_qrcode >> pqrc_
 {
 }
@@ -30,6 +40,12 @@ function post_to_qrcode_load_textdomain()
     load_plugin_textdomain('post-to-qr-code', false, dirname(__FILE__) . "/languages");
 }
 add_action("plugins_loaded", "post_to_qrcode_load_textdomain");
+
+function pqrc_init(){
+    global $pqrc_countries;
+    $pqrc_countries = apply_filters('pqrc_countries', $pqrc_countries);
+}
+add_action('init', 'pqrc_init');
 
 function pqrc_display_qrcode($content)
 {
@@ -89,18 +105,8 @@ function pqrc_display_field($args){
 
 function pqrc_display_checkbox_field(){
     $option = get_option('pqrc_checkbox');
-    $countries = array(
-        'Afganistan',
-        'Bangladesh',
-        'India',
-        'Maldives',
-        'Nepal',
-        'Pakistan',
-        'Srilanka',
-        'Bhutan'
-    );
-    
-    foreach ($countries as $country) {
+    global $pqrc_countries;
+    foreach ($pqrc_countries as $country) {
         $selected = '';
         if(is_array($option) && in_array($country, $option)) {
             $selected = "checked";
@@ -111,20 +117,9 @@ function pqrc_display_checkbox_field(){
 
 function pqrc_display_select_field(){
     $option = get_option('pqrc_select');
-    $countries = array(
-        'None',
-        'Afganistan',
-        'Bangladesh',
-        'India',
-        'Maldives',
-        'Nepal',
-        'Pakistan',
-        'Srilanka',
-        'Bhutan'
-    );
-    
+    global $pqrc_countries;
     printf('<select id="%s" name="%s" >', 'pqrc_select', 'pqrc_select');
-    foreach ($countries as $country) {
+    foreach ($pqrc_countries as $country) {
         $selected = '';
         if($option == $country) {
             $selected = "selected";
