@@ -1,0 +1,19 @@
+#customize-controls .control-section-philosophy .accordion-section-title,
+#customize-controls .control-section-philosophy .accordion-section-title:hover,
+#customize-controls .control-section-philosophy .accordion-section-title:focus {
+	background-color: #58c9e9;
+	color: #fff;
+}
+
+.control-section-philosophy .accordion-section-title .button {
+	margin-top:  -4px;
+	font-weight: 400;
+	margin-left: 8px;
+	background-color: #FE5D3C;
+	color: #fff;
+}
+
+.rtl .control-section-philosophy .accordion-section-title .button {
+	margin-left:  0;
+	margin-right: 8px;
+}

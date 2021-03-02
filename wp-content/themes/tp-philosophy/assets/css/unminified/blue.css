@@ -1,0 +1,30 @@
+/*-------------------------------------------------------------
+# Text Color
+--------------------------------------------------------------*/
+#site-header .site-title a,
+.sub-title,
+#secondary a:hover,
+h1.page-title,
+.developer a:hover,
+.main-navigation .nav-menu > li:hover > a, 
+.main-navigation .nav-menu > li.focus > a, 
+.main-navigation .nav-menu > .current-menu-item > a {
+    color: #58c9e9;
+}
+
+/*-------------------------------------------------------------
+# Background Color
+--------------------------------------------------------------*/
+.slick-dots .slick-active button:before,
+.site-footer,
+form.search-form button[type="submit"],
+.calendar_wrap table thead {
+    background-color: #58c9e9;
+}
+
+/*-------------------------------------------------------------
+# Border Color
+--------------------------------------------------------------*/
+.slick-dots li button:before {
+	border-color: #58c9e9;
+}
